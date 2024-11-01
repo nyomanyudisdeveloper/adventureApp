@@ -12,9 +12,9 @@ function searchNavClicked(){
 <template>
     <div class="w-full fixed bg-white">
         <div class="px-52 flex-row justify-between flex flex-1 py-5">
-            <template>
+            <!-- <template> -->
                 <img class="hover:cursor-pointer " alt="Wisata App logo" src="/img/logo.png" width="200" height="50" />
-            </template>
+            <!-- </template> -->
             <button @click="searchNavClicked" class="transition mx-10 w-1/2 py-2 rounded-md hover:bg-slate-400 bg-slate-200" ">
                 <FontAwesomeIcon class="mr-3" :icon="['fas', 'magnifying-glass']" />
                 <span>{{ placeStore.searchSummary }}</span>
