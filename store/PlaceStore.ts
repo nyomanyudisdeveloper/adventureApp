@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import {convertTwoDateStringToStringDisplay} from "../utils/dateUtils"
 
 export const usePlaceStore = defineStore("PlaceStore",{
     state: () => {
@@ -20,32 +21,8 @@ export const usePlaceStore = defineStore("PlaceStore",{
     },
     getters: {
         searchSummary:(state) => {
-            const date_checkin = new Date(state.search_checkin)
-            const date_checkout = new Date(state.search_checkout)
-            const monthNames = [
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ];
-            var display_date = ""
-            if(date_checkin.getYear() != date_checkout.getYear()){
-                const formattedDateCheckout = date_checkout.toLocaleDateString("en-GB",{
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric"
-                })
-                const formattedDateCheckin = date_checkin.toLocaleDateString("en-GB",{
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric"
-                })
-                display_date = formattedDateCheckin + " - "+ formattedDateCheckout
-            } 
-            else if(date_checkin.getMonth() == date_checkout.getMonth() && date_checkin.getYear() == date_checkout.getYear()){
-                display_date = date_checkin.getDate() + " - "+date_checkout.getDate()+" "+monthNames[date_checkin.getMonth()]+" "+date_checkin.getFullYear()
-            }
-            else{
-                display_date = `${date_checkin.getDate()} ${monthNames[date_checkin.getMonth()]} - ${date_checkout.getDate()} ${monthNames[date_checkout.getMonth()]} ${date_checkin.getFullYear()}`
-            }
+            const display_date = convertTwoDateStringToStringDisplay(state.search_checkin,state.search_checkout)
+            
             return `${state.search_place.name} . ${display_date}`
         },
         placeInfoSummaryName:(state) => {

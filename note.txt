@@ -1,1 +1,6 @@
 npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch
+
+Task To Do List
+Header = 
+- input place text , text "Where are you going ?" belum warna biru ketika focused 
+
