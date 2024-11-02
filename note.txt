@@ -4,3 +4,10 @@ Task To Do List
 Header = 
 - input place text , text "Where are you going ?" belum warna biru ketika focused 
 
+
+
+PlaceInfoSummary:
+- Responsive (Done)
+- Pay attention to detail 
+
+PlaceSectionNav:

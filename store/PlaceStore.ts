@@ -22,7 +22,6 @@ export const usePlaceStore = defineStore("PlaceStore",{
     getters: {
         searchSummary:(state) => {
             const display_date = convertTwoDateStringToStringDisplay(state.search_checkin,state.search_checkout)
-            
             return `${state.search_place.name} . ${display_date}`
         },
         placeInfoSummaryName:(state) => {
@@ -42,6 +41,17 @@ export const usePlaceStore = defineStore("PlaceStore",{
                 listRatingStar.push(false)
             }
             return listRatingStar
+        },
+        reviewRatingDescription:(state) => {
+            const rating = state.placeInfoSummaryData.catalog.review_rating
+            var result = "Bad"
+            if(rating >= 90){
+                result = "Excellent"
+            }
+            else if(rating >= 70 ){
+                result = "Good"
+            }
+            return result
         },
         placeInfoSummaryAddress:(state) => {
             return `${state.placeInfoSummaryData.address_line} ${state.placeInfoSummaryData.name_suffix} ${state.placeInfoSummaryData.catalog.postal_code}`

@@ -28,11 +28,13 @@ watch(inputSearchPlaceValue,async(newData,oldData) => {
     }
 })
 
+import { format } from 'date-fns'
 
+const date = ref(new Date())
 </script>
 
 <template>
-    <div class="w-full fixed bg-white">
+    <div class="w-full fixed bg-white top-0 left-0">
         <div class="flex-row justify-between flex flex-1 px-5 py-3 lg:max-w-5xl lg:mx-auto ">
             <FontAwesomeIcon @click="goToPrev" class="mr-3 pt-2  h-6 text-blue-400 sm:hidden" :icon="['fas', 'chevron-left']" />
             <img class="hover:cursor-pointer hidden sm:flex w-30 h-10" alt="Wisata App logo" src="/img/logo.png"  />
@@ -105,23 +107,5 @@ watch(inputSearchPlaceValue,async(newData,oldData) => {
                 </span>
             </div>
         </div>
-        <!-- <div class="fixed bg-blue-400 h-full ml-5 w-full mt-20">
-            <h1>Tex</h1>
-        </div> -->
-        
-        <!-- <div id="container1" @click="searchNavClicked"  class="fixed w-full h-full opacity-95 bg-slate-400" :class="placeStore.is_search_header_nav_clicked ? '' : 'hidden'">
-            <div @click.stop id="container2" class="mx-52 bg-white flex flex-row justify-evenly px-5 py-3 h-20">
-                <div class="relative border-2 w-6/12 h-full rounded-md border-slate-400">
-                    <span :class="{'text-blue-400':isInputPlaceFocused}" class="absolute -top-3 left-3 bg-white px-1 text-red-400">Where are you going ?</span>
-                    <FontAwesomeIcon class="absolute top-4 left-2" :icon="['fas', 'location-dot']" :style="{color:isInputPlaceFocused?'blue':''}" />
-                    <FontAwesomeIcon class="absolute right-4 top-4 cursor-pointer" :icon="['fas', 'fa-circle-xmark']" :style="{color:isInputPlaceFocused?'blue':''}" />
-                    <input  v-model="inputSearchPlaceValue" @focusout="inputPlaceChangeFocused(false)" @focusin="inputPlaceChangeFocused(true)" class="px-7 w-full h-full" type="text" placeholder="Search for hotels, apartement or villas" /> 
-                    
-                </div>
-                <h1>Test</h1>
-                <h1>Test</h1>
-            </div>
-        </div> -->
     </div>
-    
 </template>

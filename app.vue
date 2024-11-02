@@ -27,19 +27,10 @@
 </script>
 
 <template>
-  
     <HeaderNav />
-    <div class="mx-52">
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
-      <PlaceInfoSummary/>
+    <PlaceInfoSummary/>
       <!-- <PlaceSectionNav/>
       <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
       <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" />
       <PlaceGeneralInfo v-if="placeStore.getPlaceSectionNavActive == 'info'" /> -->
-    </div>
 </template>
