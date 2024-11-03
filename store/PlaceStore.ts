@@ -16,10 +16,18 @@ export const usePlaceStore = defineStore("PlaceStore",{
             search_checkout:"2025-03-08",
             search_total_guests:1,
             search_total_room:1,
-            is_search_header_nav_clicked:false
+            is_search_header_nav_clicked:false,
+            is_modal_gallery_images_open:false, 
+            index_image_selected:0
         }
     },
     getters: {
+        indexImageSelected:(state)=> {
+            return state.index_image_selected
+        },
+        isModalGalleryOpen:(state) => {
+            return state.is_modal_gallery_images_open
+        },
         searchSummary:(state) => {
             const display_date = convertTwoDateStringToStringDisplay(state.search_checkin,state.search_checkout)
             return `${state.search_place.name} . ${display_date}`
@@ -52,6 +60,9 @@ export const usePlaceStore = defineStore("PlaceStore",{
                 result = "Good"
             }
             return result
+        },
+        placeInfoSummaryNameSuffix:(state)=> {
+            return state.placeInfoSummaryData.name_suffix
         },
         placeInfoSummaryAddress:(state) => {
             return `${state.placeInfoSummaryData.address_line} ${state.placeInfoSummaryData.name_suffix} ${state.placeInfoSummaryData.catalog.postal_code}`
@@ -113,6 +124,9 @@ export const usePlaceStore = defineStore("PlaceStore",{
         }, 
         listAvailibility:(state)=> {
             return state.list_availability
+        }, 
+        listPlaceImages:(state)=> {
+            return state.placeInfoSummaryData.image
         }
     },
     actions:{
@@ -139,6 +153,24 @@ export const usePlaceStore = defineStore("PlaceStore",{
         },
         setIsSearchNavClicked(){
             this.is_search_header_nav_clicked = !this.is_search_header_nav_clicked
+        },
+        setIsModalGalleryImageOpen(index){
+            this.is_modal_gallery_images_open = !this.is_modal_gallery_images_open
+            this.index_image_selected = index
+        }, 
+        changeIndexImageByCursor(data){
+            var index_image = this.index_image_selected
+            const total_image = this.placeInfoSummaryData.image.length
+            if(index_image + data < 0){
+                index_image = total_image - 1
+            }
+            else if(index_image + data >= total_image){
+                index_image = 0
+            }
+            else{
+                index_image += data
+            }
+            this.index_image_selected = index_image
         }
     }
 })

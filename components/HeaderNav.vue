@@ -19,7 +19,12 @@ function showDropDownListPlace(){
 }
 
 function goToPrev(){
-    window.history.back()
+    if(placeStore.isModalGalleryOpen){
+        placeStore.setIsModalGalleryImageOpen()
+    }
+    else{
+        window.history.back()
+    }
 }
 
 watch(inputSearchPlaceValue,async(newData,oldData) => {

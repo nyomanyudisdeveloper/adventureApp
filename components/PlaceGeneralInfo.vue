@@ -2,7 +2,6 @@
 import { usePlaceStore } from '~/store/PlaceStore';
 
 const placeStore = usePlaceStore()
-console.log("PlaceGeneralInfo = ",placeStore.placeGeneralInfoLanguages)
 </script>
 
 <template>

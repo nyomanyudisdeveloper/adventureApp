@@ -22,6 +22,16 @@ PlaceInfoSection:
 - Embed Data (Done)
 - Pay attention to detail 
 
+PlaceImageGallery:
+- Responsive (Done)
+- Embed Data (Done)
+- Modal after click image (Done)
+- animation after click cursor left and right 
+- in modal, no image is not show 
+- pay attention to detail
+
+Place Deals:
+
 Footer: 
 - Responice (Done)
 - Check condition when data is empty so footer still on bottom 

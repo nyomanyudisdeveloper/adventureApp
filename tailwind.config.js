@@ -7,6 +7,9 @@ export default {
       translate: {
         '2full': '200%',
       },
+      maxHeight:{
+        '69vh': '69vh'
+      }
     },
   },
   plugins: [],
