@@ -22,4 +22,10 @@ PlaceInfoSection:
 - Embed Data (Done)
 - Pay attention to detail 
 
+Footer: 
+- Responice (Done)
+- Check condition when data is empty so footer still on bottom 
+- pay attention to detail 
+
+
 

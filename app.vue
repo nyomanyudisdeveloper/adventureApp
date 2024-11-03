@@ -33,4 +33,5 @@
     <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
     <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" />
     <PlaceGeneralInfo v-if="placeStore.getPlaceSectionNavActive == 'info'" />
+    <Footer />
 </template>
