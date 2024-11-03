@@ -84,6 +84,30 @@ export const usePlaceStore = defineStore("PlaceStore",{
             }
             return list_languages
         },
+        placeGeneralInfoCheckInTime:(state) => {
+            return state.placeInfoSummaryData.important_info.checkin.begin_time
+        },
+        placeGeneralInfoCheckOutTime:(state) => {
+            return state.placeInfoSummaryData.important_info.checkout.time
+        },
+        placeGeneralInfoAdditionalCheckInInfo:(state) => {
+            var htmlString = state.placeInfoSummaryData.important_info.checkin.instructions
+            htmlString = htmlString.slice(0,3)+" class='list-disc px-4' "+htmlString.slice(3)
+            
+            return htmlString
+        },
+        placeGeneralInfoOtherPolicyInfo:(state) => {
+            var htmlString =  state.placeInfoSummaryData.important_info.policies.know_before_you_go
+            htmlString = htmlString.slice(0,3)+" class='list-disc px-4' "+htmlString.slice(3)
+            
+            return htmlString
+        },
+        placeGeneralInfoFeeOptionalInfo:(state) => {
+            var htmlString =  state.placeInfoSummaryData.important_info.fees.optional
+            htmlString = htmlString.slice(0,3)+" class='list-disc px-4' "+htmlString.slice(3)
+            
+            return htmlString
+        },
         getPlaceSectionNavActive:(state)=>{
             return state.placeSectionNavActive
         }, 

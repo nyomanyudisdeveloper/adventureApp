@@ -16,7 +16,7 @@
   console.log("placeStore.searchSummary = ",placeStore.searchSummary)
 
   await callOnce(async() => {
-    const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${placeID.value}&include=general_info`))[placeID.value]
+    const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${placeID.value}&include=general_info&include=important_info`))[placeID.value]
     placeStore.setPlaceInfoSummaryData(responsePlaceInfoSummary)
 
     const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${placeID.value}?checkin=${checkin.value}&checkout=${checkout.value}&guest_per_room=${guest_per_room.value}&number_of_room=${number_of_room.value}`)
@@ -29,8 +29,8 @@
 <template>
     <HeaderNav />
     <PlaceInfoSummary/>
-      <!-- <PlaceSectionNav/>
-      <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
-      <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" />
-      <PlaceGeneralInfo v-if="placeStore.getPlaceSectionNavActive == 'info'" /> -->
+    <PlaceSectionNav/>
+    <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
+    <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" />
+    <PlaceGeneralInfo v-if="placeStore.getPlaceSectionNavActive == 'info'" />
 </template>

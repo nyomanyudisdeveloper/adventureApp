@@ -11,3 +11,15 @@ PlaceInfoSummary:
 - Pay attention to detail 
 
 PlaceSectionNav:
+- Responsive (Done)
+- Can navigate Section (Done)
+- Duplicate exact icon 
+- Animation change section nav (Done)
+- Animation change section content
+
+PlaceInfoSection:
+- Responsive (Done)
+- Embed Data (Done)
+- Pay attention to detail 
+
+

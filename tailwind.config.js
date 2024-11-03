@@ -3,7 +3,11 @@ export default {
   darkMode: false,
   content: ["app.vue","./components/**/*.{html,js,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      translate: {
+        '2full': '200%',
+      },
+    },
   },
   plugins: [],
 }
