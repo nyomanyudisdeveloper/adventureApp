@@ -1,4 +1,5 @@
 <script setup lang="ts">
+ 
   import '~/assets/css/main.css'
   import { usePlaceStore } from './store/PlaceStore';
   import { library } from '@fortawesome/fontawesome-svg-core';
@@ -35,3 +36,5 @@
     <PlaceGeneralInfo v-if="placeStore.getPlaceSectionNavActive == 'info'" />
     <Footer />
 </template>
+
+

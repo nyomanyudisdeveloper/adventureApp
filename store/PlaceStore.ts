@@ -9,11 +9,11 @@ export const usePlaceStore = defineStore("PlaceStore",{
             list_availability:[],
             search_place:{
                 "name":"Fairmont Jakarta",
-                "address":"",
+                "address":"Jakarta Indonesia",
                 "id":"9000248394"
             },
-            search_checkin:"2025-03-04",
-            search_checkout:"2025-03-08",
+            search_checkin_date:"2025-03-04",
+            search_checkout_date:"2025-03-08",
             search_total_guests:1,
             search_total_room:1,
             is_search_header_nav_clicked:false,
@@ -29,7 +29,7 @@ export const usePlaceStore = defineStore("PlaceStore",{
             return state.is_modal_gallery_images_open
         },
         searchSummary:(state) => {
-            const display_date = convertTwoDateStringToStringDisplay(state.search_checkin,state.search_checkout)
+            const display_date = convertTwoDateStringToStringDisplay(state.search_checkin_date,state.search_checkout_date)
             return `${state.search_place.name} . ${display_date}`
         },
         placeInfoSummaryName:(state) => {

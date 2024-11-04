@@ -23,7 +23,7 @@ function clickSectionNav(data) {
             </div>
         </div>
         <div class="w-full h-0.5 bg-slate-200">
-            <div class="w-4/12 h-0.5 bg-blue-400 transition-transform duration-300"
+            <div class="flex z-0 w-4/12 h-0.5 bg-blue-400 transition-transform duration-300"
             :class="{
                 'translate-x-0':placeStore.getPlaceSectionNavActive == 'deals'? true : false,
                 'translate-x-full':placeStore.getPlaceSectionNavActive == 'photos'? true : false,
@@ -34,7 +34,7 @@ function clickSectionNav(data) {
     <div class="hidden sm:flex flex-col mt-7">
         <div class="w-full h-0.5 bg-slate-200 flex justify-center items-center max-w-5xl mx-auto">
             <div class="flex w-7/12 max-w-2xl flex-row justify-center  ">
-                <div class="w-32 bg-blue-400 h-0.5 transition-transform duration-300"
+                <div class="flex z-0 w-32 bg-blue-400 h-0.5 transition-transform duration-300"
                     :class="{
                     '-translate-x-full':placeStore.getPlaceSectionNavActive == 'deals'? true : false,
                     'translate-x-0':placeStore.getPlaceSectionNavActive == 'photos'? true : false,
