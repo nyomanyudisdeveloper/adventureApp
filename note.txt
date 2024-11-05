@@ -1,18 +1,30 @@
 npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch
 
-Task To Do List
+Task To Do List: 
+
+- Inisialisasi Data ketika Home Page (Done)
+
+
+
 Header = 
 - input place text , text "Where are you going ?" belum warna biru ketika focused 
+- refactor code (done)
+- input place autocomplete (done)
+- input date checkin checkout (done)
+- input total room and guest (done)
+- pay attention to detail 
 
 
 
 PlaceInfoSummary:
 - Responsive (Done)
+- Refactor Code (Done)
 - Pay attention to detail 
 
 PlaceSectionNav:
 - Responsive (Done)
 - Can navigate Section (Done)
+- Refactor Code (Done)
 - Duplicate exact icon 
 - Animation change section nav (Done)
 - Animation change section content
@@ -20,6 +32,7 @@ PlaceSectionNav:
 PlaceInfoSection:
 - Responsive (Done)
 - Embed Data (Done)
+- Refactor Code (Done)
 - Pay attention to detail 
 
 PlaceImageGallery:
