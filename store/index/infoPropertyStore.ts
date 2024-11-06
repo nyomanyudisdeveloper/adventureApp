@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 
-export const useInfoPlaceStore = defineStore("InfoStore",{
+export const useInfoPropertyStore = defineStore("InfoPropertyStore",{
     state: () => {
         return {
             info_place:{

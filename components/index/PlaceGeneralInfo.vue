@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
+import { useInfoPropertyStore } from '~/store/index/infoPropertyStore';
 
-const infoPlaceStore = useInfoPlaceStore()
+const infoPlaceStore = useInfoPropertyStore()
 
 defineProps({
     isLoadPlaceInfoAndImageShow:{

@@ -1,8 +1,8 @@
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
+import { useInfoPropertyStore } from '~/store/index/infoPropertyStore';
 
-const infoPlaceStore = useInfoPlaceStore()
+const infoPlaceStore = useInfoPropertyStore()
 defineProps({
     isLoadPlaceInfoAndImageShow:{
         type:Boolean,

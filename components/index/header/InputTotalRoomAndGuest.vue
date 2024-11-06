@@ -7,11 +7,14 @@ const {inputDataForSearch,setInputDataForSearch} = defineProps({
     setInputDataForSearch:{type:Object,required:true},
 })
 const isModalInputShow = ref(false)
-
-
+const isModalChildren = ref(false)
 
 function clickInput(){
     isModalInputShow.value = !isModalInputShow.value
+}
+
+function clickChildrenInfo(){
+    isModalChildren.value = !isModalChildren.value
 }
 
 function convertNumberToRoomDesc(number){
@@ -58,19 +61,22 @@ function changeNumberTotalRoom(number){
         <div class="px-8 w-full h-full text-base rounded-md flex items-center ml-1">
             {{ convertNumberToRoomDesc(inputDataForSearch.totalGuest) }} x {{ inputDataForSearch.totalRoom }}
         </div>
-        <div @click.stop v-if="isModalInputShow" class="px-3 pb-3 rounded-md absolute bg-white w-full top-[70px] z-10  overflow-y-auto" style="box-shadow: 0px 0px 4px 4px #cbd5e1;">
+        <div @click.stop v-if="isModalInputShow" class="px-3 pb-3 rounded-md absolute bg-white w-full lg:w-80 top-[70px] z-10  overflow-y-auto" style="box-shadow: 0px 0px 4px 4px #cbd5e1;">
             <div class="flex flex-row justify-between p-5">
-                <div @click="changeNumberTotalGuest(-1)" class="flex justify-center items-center">
+                <div @click="changeNumberTotalGuest(-1)" class="flex justify-center items-center cursor-pointer">
                     <FontAwesomeIcon :icon="['fas', 'minus']"  />
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <span>{{ convertNumberToRoomDesc(inputDataForSearch.totalGuest) }}</span>
+                    <span class="text-base">{{ convertNumberToRoomDesc(inputDataForSearch.totalGuest) }}</span>
                     <div>
-                        <span>{{ inputDataForSearch.totalGuest }}</span> 
-                        <span> guests/room</span>
+                        <span class="text-blue-600 font-normal text-xl">{{ inputDataForSearch.totalGuest }}</span> 
+                        <span class="text-sm ml-1 font-light">{{ inputDataForSearch.totalGuest > 1 ? 'guests/room' : 'guest/room' }} </span>
+                    </div>
+                    <div @click="clickChildrenInfo" class="flex flex-row items-center mt-1 cursor-pointer">
+                        <FontAwesomeIcon class="w-3 h-3" :icon="['fas', 'circle-info']"  />
+                        <span class="text-xs ml-1 font-light text-gray-500">What about children ?</span>
                     </div>
                     
-                    <span>What about children</span>
                 </div>
                 <div @click="changeNumberTotalGuest(1)" class="flex justify-center items-center">
                     <FontAwesomeIcon :icon="['fas', 'plus']"  />
@@ -81,9 +87,12 @@ function changeNumberTotalRoom(number){
                     <FontAwesomeIcon :icon="['fas', 'minus']"  />
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                    <span>{{ inputDataForSearch.totalRoom }} Rooms</span>
+                    <span>
+                        <span class="text-blue-600 font-normal text-xl">{{ inputDataForSearch.totalRoom }}</span> 
+                        <span class="text-base ml-1  font-light">{{ inputDataForSearch.totalRoom > 1 ? 'Rooms' : 'Room' }}</span>
+                    </span>
                 </div>
-                <div @click="changeNumberTotalRoom(1)" class="flex justify-center items-center">
+                <div @click="changeNumberTotalRoom(1)" class="flex justify-center items-center cursor-pointer">
                     <FontAwesomeIcon :icon="['fas', 'plus']"  />
                 </div>
             </div>

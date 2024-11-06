@@ -82,7 +82,7 @@ async function clickSearch(){
                 <UiPrimaryButton title="Sign In" />
             </div>
         </div>
-        <div  @click="searchNavClicked" class="z-50 fixed w-full h-full  bg-slate-600/90 sm:px-5 rounded-md" :class="isModalShow ? '' : 'hidden'">
+        <div  @click="searchNavClicked" class="z-50 fixed w-full h-full  bg-slate-600/30 sm:px-5 rounded-md" :class="isModalShow ? '' : 'hidden'">
             <div  @click.stop class="w-full bg-white flex flex-col px-5 py-3 lg:max-w-5xl lg:mx-auto">
                 <div class="flex flex-col lg:flex-row lg:items-center">
                 <div class="lg:w-5/12 lg:mr-3">
@@ -107,7 +107,7 @@ async function clickSearch(){
                         />
                     </div>
                 </div>
-                <div class="lg:w-1/12 h-16">
+                <div class="lg:w-28 h-16">
                     <UiPrimaryButton :click="clickSearch" title="Search" icon="magnifying-glass" />
                 </div>
                 </div>

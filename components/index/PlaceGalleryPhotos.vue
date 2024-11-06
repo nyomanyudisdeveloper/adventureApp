@@ -1,11 +1,11 @@
 <script setup>
 import {onMounted, nextTick,watch, ref, onBeforeUnmount} from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
+import { useInfoPropertyStore } from '~/store/index/infoPropertyStore';
 
 
 const indexSelectedImage = ref(0);
-const infoPlaceStore = useInfoPlaceStore()
+const infoPlaceStore = useInfoPropertyStore()
 const {isLoadPlaceInfoAndImageShow,isModalImageShow,setIsModalImageShow} = defineProps({
     isLoadPlaceInfoAndImageShow:{ type:Boolean,required:true},
     isModalImageShow:{type:Object,required:true},
