@@ -16,20 +16,23 @@ Header =
 
 
 
-PlaceInfoSummary:
+PlaceInfoSummary (Semi Final):
 - Responsive (Done)
 - Refactor Code (Done)
 - Skeleton Loader (Done)
+- Change state from 
 - Change circle rating 
 - Pay attention to detail 
 
-PlaceSectionNav:
+PlaceSectionNav (Semi-final):
 - Responsive (Done)
 - Can navigate Section (Done)
 - Refactor Code (Done)
-- Duplicate exact icon 
 - Animation change section nav (Done)
 - Animation change section content
+- Pay Attention to Detail (Done)
+- Change state from global to local (Done)
+- small bug indicator nav is still show in Header DDL 
 
 PlaceInfoSection:
 - Responsive (Done)

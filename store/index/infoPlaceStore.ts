@@ -86,18 +86,6 @@ export const useInfoPlaceStore = defineStore("InfoStore",{
         },
         infoPlaceName: (state) => {return state.info_place.name},
         starRating:(state)=>{ return state.info_place.catalog.star_rating },
-        infoPlaceRatingStarInList: (state) => {
-            var listRatingStar = []
-            const star_rating = state.info_place.catalog.star_rating
-            const non_star_rating = 5 - star_rating
-            for(let i=0;i<star_rating;i++){
-                listRatingStar.push(true)
-            }
-            for(let i=0;i<non_star_rating;i++){
-                listRatingStar.push(false)
-            }
-            return listRatingStar
-        },
         infoPlaceSummaryType: (state) => {return state.info_place.type },
         infoPlaceAddress: (state) => {return `${state.info_place.address_line} ${state.info_place.name_suffix} ${state.info_place.catalog.postal_code}`},
         reviewRatingDesc: (state) => {

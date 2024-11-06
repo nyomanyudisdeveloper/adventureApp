@@ -29,6 +29,11 @@ import { usePlaceStore } from '~/store/PlaceStore';
 
   const isLoadDealsShow = ref(false)
   const isLoadPlaceInfoAndImage = ref(false)
+
+  const activeMenu = ref('deals')
+  function setActiveMenu (data)  {
+    activeMenu.value = data
+  }
   
 
   await onMounted(async() => {
@@ -104,10 +109,10 @@ import { usePlaceStore } from '~/store/PlaceStore';
 <template>
     <IndexHeader :url_params="url_params"/>
     <IndexPlaceInfoSummary :isLoadPlaceInfoAndImage="isLoadPlaceInfoAndImage"  />
-    <IndexPlaceSectionNav :isLoadPlaceInfoAndImage="isLoadPlaceInfoAndImage" v-if="infoPlaceStore.infoPlace"/>
-    <IndexPlaceGeneralInfo v-if="indexNavStore.activeMenu == 'info'" />
-    <IndexPlaceGalleryPhotos v-if="indexNavStore.activeMenu == 'photos' && infoPlaceStore.infoPlace" />
-    <IndexPlaceDeals :isLoadDealsShow="isLoadDealsShow"  v-if="indexNavStore.activeMenu == 'deals'" />
+    <IndexPlaceSectionNav :setActiveMenu="setActiveMenu" :activeMenu="activeMenu" />
+    <IndexPlaceGeneralInfo  v-if="activeMenu == 'info'" />
+    <IndexPlaceGalleryPhotos v-if="activeMenu == 'photos' && infoPlaceStore.infoPlace" />
+    <IndexPlaceDeals :isLoadDealsShow="isLoadDealsShow"  v-if="activeMenu == 'deals'" />
     <!-- <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
     <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" /> -->
     <CommonFooter/>
