@@ -42,9 +42,9 @@ function changeNumberTotalRoom(number){
 
 
 <template>
-    <div @click="clickInput" class="relative border-2 w-full h-16 rounded-md border-slate-400 mt-5 ">
+    <div @click="clickInput" class="relative border-[1px] w-full h-16 rounded-md border-slate-400 mt-5 ">
         <span  class="absolute -top-3 left-3 bg-white px-1 text-sm">Guests & Rooms</span>
-        <FontAwesomeIcon class="absolute top-6 left-2" :icon="['fas', 'users']"  />
+        <FontAwesomeIcon class="absolute top-5 w-5 h-5 left-2" :icon="['fas', 'users']"  />
         <div class="px-8 w-full h-full text-lg rounded-md   flex items-center">
             {{ convertNumberToRoomDesc(indexHeaderStore.inputTotalGuestHeaderData) }} x {{ indexHeaderStore.inputTotalRoomHeaderData }}
         </div>

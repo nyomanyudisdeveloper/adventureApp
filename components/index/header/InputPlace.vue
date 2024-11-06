@@ -25,7 +25,7 @@ async function clickInput(){
         if(indexHeaderStore.inputPlaceHeaderDesc.length > 2){
             isLoadShow.value = true
             isListPlaceShow.value = true
-            const url = `https://project-technical-test-api.up.railway.app/property/search?query=${indexHeaderStore.inputPlaceHeaderDesc}`
+            const url = `https://project-technical-test-api.up.railway.app/location/search?query=${indexHeaderStore.inputPlaceHeaderDesc}`
             const response = await $fetch(url)
             listPlaceData.value = response
             isLoadShow.value = false
@@ -66,8 +66,10 @@ watch(() => indexHeaderStore.input_place_header_desc,async(newData,oldData) => {
         if(indexHeaderStore.input_place_header_desc.length > 2){
             isListPlaceShow.value = true
             isLoadShow.value = true
-            const url = `https://project-technical-test-api.up.railway.app/property/search?query=${indexHeaderStore.inputPlaceHeaderDesc}`
+            const url = `https://project-technical-test-api.up.railway.app/location/search?query=${indexHeaderStore.inputPlaceHeaderDesc}`
             const response = await $fetch(url)
+            console.log("url nyoman 123 = ",url)
+            console.log("response nyoman 123 = ",response)
             listPlaceData.value = response
             isLoadShow.value = false
         }
@@ -80,11 +82,11 @@ watch(() => indexHeaderStore.input_place_header_desc,async(newData,oldData) => {
 </script>
 
 <template>
-    <div @click="clickInput" class="relative border-2 w-full h-16 rounded-md border-slate-400">
+    <div @click="clickInput" class="relative border-[1px] w-full h-16 rounded-md border-slate-400">
         <span class="absolute -top-3 left-3 bg-white px-1 text-sm">Where are you going ?</span>
         <FontAwesomeIcon class="absolute top-5 left-2 w-5 h-5" :icon="['fas', 'location-dot']"  />
         <FontAwesomeIcon @click="deleteValue" class="absolute right-4 top-5 cursor-pointer w-6 h-6" :icon="['fas', 'fa-circle-xmark']"  />
-        <input v-model="indexHeaderStore.input_place_header_desc"  class="pl-8 pr-14 w-full h-full text-lg rounded-md" type="text" placeholder="Search for hotels, apartement or villas" />
+        <input v-model="indexHeaderStore.input_place_header_desc"  class="pl-8 pr-14 w-full h-full text-base rounded-md" type="text" placeholder="Search for hotels, apartement or villas" />
         <div @click.stop v-if="isListPlaceShow"  class="px-3 pb-3 rounded-md absolute bg-white w-full top-16 z-10 h-96 overflow-y-auto " style="box-shadow: 0px 0px 4px 4px #cbd5e1;">
             <div v-if="isLoadShow"  class="flex flex-row justify-center mt-5">
                 <UiLoader />

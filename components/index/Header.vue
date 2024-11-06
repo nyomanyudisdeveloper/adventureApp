@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import { usePlaceStore } from '~/store/PlaceStore';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useIndexHeaderStore } from '~/store/index/indexHeaderStore';
 import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
 
 
-const placeStore = usePlaceStore()
 const indexHeaderStore = useIndexHeaderStore()
 const infoPlaceStore = useInfoPlaceStore()
 
 const isModalShow = ref(false)
 
-const {setIsModalHeaderShow,isModalHeaderShow,isModalImageShow,setIsModalImageShow} = defineProps({
-    setIsModalHeaderShow:{type:Object, require:true},
-    isModalHeaderShow:{type:Object, require:true},
+const {isModalImageShow,setIsModalImageShow} = defineProps({
     isModalImageShow:{type: Object, required:true},
     setIsModalImageShow:{type: Object, required:true}
 })
