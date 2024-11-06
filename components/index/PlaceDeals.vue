@@ -12,7 +12,8 @@
 </script>
 
 <template>
-    <div v-if="placeStore.listAvailibility.length > 0 && !isLoadDealsShow" >
+    <CommonMaintanance />
+    <!-- <div v-if="placeStore.listAvailibility.length > 0 && !isLoadDealsShow" >
         <div class="p-5 bg-white">
             <div class="flex  items-center">
                 <FontAwesomeIcon :icon="['fas', 'filter']" />
@@ -23,10 +24,10 @@
                 <UiFilterButton title="Free Cancellation" icon="credit-card"  />
             </div>
         </div>
-        <!-- <template v-for="(item,index) in placeStore.listAvailibility">
+        <template v-for="(item,index) in placeStore.listAvailibility">
 
-        </template> -->
-        <!-- <template v-for="(item,index) in placeStore.listAvailibility">
+        </template>
+        <template v-for="(item,index) in placeStore.listAvailibility">
             <div>
                 <div>offer_id = {{ item.offer_id }}</div>
                 <div>room_name = {{ item.room_name }} </div> 
@@ -42,27 +43,7 @@
             </div>
             <span v-else-if="index != 0 && item.room_name != placeStore.listAvailibility[index-1].room_name">{{ item.room_name }} {{ item.pricing_data.net_rate_nightly_with_bonus }}</span>
             <span v-else>{{ item.room_name }} {{ item.pricing_data.net_rate_nightly_with_bonus }} 2</span>
-        </template> -->
-    </div>
-    <div v-else-if="isLoadDealsShow" class="animate-pulse space-y-4 p-4">
-        <!-- Lines representing text -->
-        <div class="h-4 bg-gray-300 rounded w-3/4"></div>
-        <div class="h-4 bg-gray-300 rounded w-full"></div>
-        <div class="h-4 bg-gray-300 rounded w-5/6"></div>
-
-        <!-- Rectangle for an image or large block -->
-        <div class="h-48 bg-gray-300 rounded"></div>
-
-        <!-- Small buttons or icons -->
-        <div class="flex space-x-2">
-        <div class="h-8 w-8 bg-gray-300 rounded-full"></div>
-        <div class="h-8 w-8 bg-gray-300 rounded-full"></div>
-        <div class="h-8 w-8 bg-gray-300 rounded-full"></div>
-    </div>
-
-    </div>
-    <div v-else>
-        <h1>No Data Found</h1>
-    </div>
+        </template>
+    </div> -->
     
 </template>
