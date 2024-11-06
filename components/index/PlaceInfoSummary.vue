@@ -4,15 +4,15 @@ import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
 
 const infoPlaceStore = useInfoPlaceStore()
 defineProps({
-    isLoadPlaceInfoAndImage:{
-        type:Object,
+    isLoadPlaceInfoAndImageShow:{
+        type:Boolean,
         requried:true
     }
 })
 </script>
 
 <template>
-    <div v-if="isLoadPlaceInfoAndImage" class="animate-pulse mt-16 px-5 py-3 lg:max-w-5xl lg:mx-auto">
+    <div v-if="isLoadPlaceInfoAndImageShow" class="animate-pulse mt-16 px-5 py-3 lg:max-w-5xl lg:mx-auto">
         <div class="flex h-4 sm:hidden items-center bg-gray-300 rounded"></div>
         <div class="flex flex-row mt-3">
             <div class="w-20 h-20  sm:h-32 sm:w-32 mr-3 flex bg-gray-300 rounded-full  justify-center items-center"></div>
