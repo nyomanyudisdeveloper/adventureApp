@@ -85,7 +85,7 @@ const url_params = ref({
     totalRoom:1
   })
 
-
+https://adventure-app-jet.vercel.app/?vercelToolbarCode=WjgkMKMTycTQGfY&name=Fairmont Jakarta&address=Jakarta, Indonesia&id=9000248394&checkin=2024-11-05&checkout=2024-11-06&total_guest=2&total_room=1&location_type=property
 http://localhost:3000/?name=Fairmont Jakarta&address=Jakarta, Indonesia&id=9000248394&checkin=2024-11-05&checkout=2024-11-06&total_guest=2&total_room=1&location_type=property
 
 
