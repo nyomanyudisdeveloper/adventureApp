@@ -1,7 +1,5 @@
 
-export const convertTwoDateStringToStringDisplay = (stringDate1,stringDate2) => {
-    const date1 = new Date(stringDate1)
-    const date2 = new Date(stringDate2)
+export const convertTwoDateStringToStringDisplay = (date1,date2) => {
     const monthNames = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"

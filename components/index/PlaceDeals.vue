@@ -1,8 +1,4 @@
 <script setup lang="ts">
-    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-    import { usePlaceStore } from '~/store/PlaceStore';
-
-    const placeStore = usePlaceStore()
     defineProps({
         isLoadDealsShow:{
             type:Object,

@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {convertTwoDateStringToStringDisplay} from "../../utils/dateUtils"
 
 const isModalShow = ref(false)
 const inputDataForSearch = ref({
     id:"", 
     name:"",
     address:"",
-    checkIn:"",
-    checkOut:"",
-    totalGuest:0,
-    totalRoom:0
+    date:{
+      start:new Date(),
+      end:new Date()
+    },
+    totalGuest:2,
+    totalRoom:1,
+    locationType:""
 })
+
+
 const setInputDataForSearch = (data) => {
     inputDataForSearch.value = data
 }
@@ -31,29 +37,25 @@ function goToPrev(){
 }
 
 const inputSearchHeaderDesc = () => {
-    return inputDataFixed.name == "" ? "" : inputDataFixed.name
+    const display_date = convertTwoDateStringToStringDisplay(inputDataFixed.date.start,inputDataFixed.date.end)
+    if(inputDataFixed.name == ""){
+        return "Find your place to stay"
+    }
+    return `${inputDataFixed.name} . ${display_date}`
 }
 
 
 function searchNavClicked(){
     inputDataForSearch.value = {...inputDataFixed}
     isModalShow.value = !isModalShow.value
-    // indexHeaderStore.setInputPlaceHeaderDesc(inputDataFixed.value.name == "" ? "" :  inputDataFixed.value.name + ", "+ inputDataFixed.value.address)
-    // indexHeaderStore.setInputPlaceHeaderData({
-    //     id:inputDataFixed.value.id,
-    //     name:inputDataFixed.value.name,
-    //     address:inputDataFixed.value.address
-    // })
-
-    // indexHeaderStore.setInputDateHeaderData({
-    //     start:indexHeaderStore.urlParamData.checkIn == "" ? new Date() : new Date(indexHeaderStore.urlParamData.checkIn),
-    //     end:indexHeaderStore.urlParamData.checkOut == "" ? new Date() : new Date(indexHeaderStore.urlParamData.checkOut)
-    // })
-    // indexHeaderStore.setInputTotalRoomHeaderData(indexHeaderStore.urlParamData.totalRoom)
-    // indexHeaderStore.setInputTotalGuestHeaderData(indexHeaderStore.urlParamData.totalGuest)
 }
 
 async function clickSearch(){
+    if(inputDataForSearch.value.id != ""){
+        isModalShow.value = !isModalShow.value
+        setInputDataFixed(inputDataForSearch.value)
+    }
+    
     // const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${indexHeaderStore.inputPlaceHeaderData.id}&include=general_info&include=important_info&include=image`))[indexHeaderStore.inputPlaceHeaderData.id]
     // infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
 
@@ -74,7 +76,7 @@ async function clickSearch(){
             
             <div @click="searchNavClicked" class="mx-1 transition flex justify-center items-center w-9/12 sm:w-6/12 md:w-7/12 h-10 rounded-lg hover:bg-slate-400 active:bg-slate-200 bg-slate-200 text-pretty ">
                 <FontAwesomeIcon class="mx-3 w-3 h-3" :icon="['fas', 'magnifying-glass']" />
-                <div class="text-sm text-ellipsis truncate ">{{ inputSearchHeaderDesc() }}</div>
+                <div class="text-sm text-ellipsis truncate " >{{ inputSearchHeaderDesc() }}</div>
             </div>
             <div class="w-20 h-full">
                 <UiPrimaryButton title="Sign In" />
@@ -87,15 +89,23 @@ async function clickSearch(){
                     <IndexHeaderInputPlace 
                         :inputDataForSearch="inputDataForSearch"
                         :setInputDataForSearch="setInputDataForSearch"
+                        :isModalShow="isModalShow"
                     />
                 </div>
                 <div class="flex flex-col sm:flex-row sm:justify-between mb-5 lg:w-6/12 lg:mr-3">
-                    <!-- <div class="w-full sm:w-6/12 sm:mr-3">
-                        <IndexHeaderInputDate />
-                    </div> -->
-                    <!-- <div class="w-full sm:w-6/12">
-                        <IndexHeaderInputTotalRoomAndGuest />
-                    </div> -->
+                    <div class="w-full sm:w-6/12 sm:mr-3">
+                        <IndexHeaderInputDate 
+                            :inputDataForSearch="inputDataForSearch"
+                            :setInputDataForSearch="setInputDataForSearch"
+                            :isModalShow="isModalShow"
+                        />
+                    </div>
+                    <div class="w-full sm:w-6/12">
+                        <IndexHeaderInputTotalRoomAndGuest 
+                        :inputDataForSearch="inputDataForSearch"
+                        :setInputDataForSearch="setInputDataForSearch"
+                        />
+                    </div>
                 </div>
                 <div class="lg:w-1/12 h-16">
                     <UiPrimaryButton :click="clickSearch" title="Search" icon="magnifying-glass" />

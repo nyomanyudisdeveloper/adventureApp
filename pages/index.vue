@@ -3,37 +3,28 @@
   import '~/assets/css/main.css'
   import { library } from '@fortawesome/fontawesome-svg-core';
   import { fas } from '@fortawesome/free-solid-svg-icons';
-  import { useIndexHeaderStore } from '~/store/index/indexHeaderStore';
   import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
   const route = useRoute() 
   library.add(fas); 
-  const indexHeaderStore = useIndexHeaderStore()
   const infoPlaceStore = useInfoPlaceStore()
   
-  const formatDate = (date) => { 
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const day = String(date.getDate()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
-  };
-
-  const formatDateNow = formatDate(new Date());
 
   var nextDate = new Date();
   nextDate.setDate(nextDate.getDate() + 1);
-  const formatNextDate = formatDate(nextDate);
 
   const inputDataFixed = ref({
     id:"", 
-    name:"Fairmont Jakarta",
-    address:"Jakarta,Indonesia",
-    checkIn:formatDateNow,
-    checkOut:formatNextDate,
-    totalGuest:0,
-    totalRoom:0
+    name:"",
+    address:"",
+    date:{
+      start:new Date(),
+      end:nextDate
+    },
+    totalGuest:2,
+    totalRoom:1,
+    locationType:""
   })
   const setInputDataFixed = (data) => {
     inputDataFixed.value = data
@@ -54,6 +45,20 @@
   function setActiveMenu (data)  {
     activeMenu.value = data
   }
+
+  watch(inputDataFixed,async (newData,oldData) => {
+    isLoadDealsShow.value = true
+    isLoadPlaceInfoAndImageShow.value = true
+    isFetchDataError.value = false
+    isNoFetchDataFirstTime.value = false
+
+    const url = `https://project-technical-test-api.up.railway.app/property/content?id=${inputDataFixed.value.id}&include=general_info&include=important_info&include=image`
+    console.log("url 123 = ",url)
+    const responsePlaceInfoSummary = (await $fetch(url))[inputDataFixed.value.id]
+    console.log("responsePlaceInfoSummary 123 = ",responsePlaceInfoSummary)
+    infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
+    isLoadPlaceInfoAndImageShow.value = false
+  })
   
 
   await onMounted(async() => {
@@ -76,16 +81,15 @@
           id:param_url_id, 
           name:param_url_name,
           address:param_url_address,
-          checkIn:param_url_checkin,
-          checkOut:param_url_chekcout,
+          date:{
+            start:new Date(param_url_checkin),
+            end:new Date(param_url_chekcout)
+          },
+          checkIn:new Date(param_url_checkin),
+          checkOut:new Date(param_url_chekcout),
           totalGuest:param_url_total_guest,
           totalRoom:param_url_total_room
         }
-        
-        
-        const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${param_url_id}&include=general_info&include=important_info&include=image`))[param_url_id]
-        infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
-        isLoadPlaceInfoAndImageShow.value = false
         
       }
       else{

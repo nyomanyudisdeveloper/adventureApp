@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+
 const isDdlPlaceShow = ref(false)
 const isListOptionDdlPlaceShow = ref(false)
 const listLocationData = ref([])
@@ -11,9 +12,10 @@ const isOpenForFirstTime = ref(false)
 
 const inputPlaceDesc = ref("")
 
-const {inputDataForSearch,setInputDataForSearch} = defineProps({
+const {inputDataForSearch,setInputDataForSearch,isModalShow} = defineProps({
     inputDataForSearch:{type:Object,required:true},
-    setInputDataForSearch:{type:Object,required:true}
+    setInputDataForSearch:{type:Object,required:true},
+    isModalShow:{type:Object,required:true},
 })
 
 async function clickInput(){
@@ -58,7 +60,8 @@ function deleteValue(){
     setInputDataForSearch(temp_data)
 }
 
-function clickOption(name,address,id){
+function clickOption(name,address,id,locationType){
+    console.log("clickOption")
     isDdlPlaceShow.value = false
     isOptionPlaceClicked.value = true
 
@@ -66,6 +69,7 @@ function clickOption(name,address,id){
     temp_data.name = name
     temp_data.address = address
     temp_data.id = id
+    temp_data.locationType = locationType
     setInputDataForSearch(temp_data)
 
     inputPlaceDesc.value = name + ", "+ address
@@ -83,7 +87,7 @@ function listOptionIconDesc(data){
     }
 }
 
-watch(() => inputDataForSearch, async(newData,oldData) => {
+watch(() => isModalShow, async(newData,oldData) => {
     inputPlaceDesc.value = inputDataForSearch.name == "" ? "" : `${inputDataForSearch.name}, ${inputDataForSearch.address}`
     isOpenForFirstTime.value = true
 })
@@ -116,6 +120,7 @@ watch(inputPlaceDesc,async(newData,oldData) => {
             isDdlPlaceShow.value = false
         }
     }
+    
 })
 
 </script>
@@ -130,7 +135,7 @@ watch(inputPlaceDesc,async(newData,oldData) => {
             <div v-if="isLoadShow"  class="flex flex-row justify-center mt-5">
                 <UiLoader />
             </div>
-            <div v-if="isListOptionDdlPlaceShow"  @click="clickOption(item.name,item.name_suffix,item.id)" v-for="item in listPropertyData.concat(listLocationData)" class="mt-3">
+            <div @click.stop v-if="isListOptionDdlPlaceShow"  @click="clickOption(item.name,item.name_suffix,item.id,item.location_type)" v-for="item in listPropertyData.concat(listLocationData)" class="mt-3">
                 <div 
                     class="flex items-center bg-blue-100 w-24 px-2 py-0.5 rounded-md "
                     :class="{
