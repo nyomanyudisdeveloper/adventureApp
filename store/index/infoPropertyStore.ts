@@ -5,6 +5,7 @@ export const useInfoPropertyStore = defineStore("InfoPropertyStore",{
         return {
             info_place:{
                 name:"",
+                type:"",
                 catalog:{
                     star_rating:0,
                     hero_image_url:{
@@ -89,7 +90,7 @@ export const useInfoPropertyStore = defineStore("InfoPropertyStore",{
             return state.info_place.image
         },
         infoPlaceName: (state) => {return state.info_place.name},
-        starRating:(state)=>{ return state.info_place.catalog.star_rating },
+        starRating:(state)=>{ return state.info_place.catalog.star_rating ? state.info_place.catalog.star_rating : 0  },
         infoPlaceSummaryType: (state) => {return state.info_place.type },
         infoPlaceAddress: (state) => {return `${state.info_place.address_line} ${state.info_place.name_suffix} ${state.info_place.catalog.postal_code}`},
         reviewRatingDesc: (state) => {
@@ -107,6 +108,41 @@ export const useInfoPropertyStore = defineStore("InfoPropertyStore",{
         infoPlaceImageSummary: (state) => { return `${state.info_place.catalog.hero_image_url.ori}`}
     },
     actions:{
-        setInfoPlace(data) {this.info_place = data }
+        setInfoPlace(data) {this.info_place = data },
+        reset(state) {
+            this.info_place =  {
+                name:"",
+                catalog:{
+                    star_rating:0,
+                    hero_image_url:{
+                        ori:""
+                    }
+                },
+                important_info:{
+                    checkin:{
+                        begin_time:"",
+                        instructions:""
+                    },
+                    checkout:{
+                        time:""
+                    },
+                    policies:{
+                        know_before_you_go:""
+                    },
+                    fees:{
+                        optional:""
+                    }
+                },
+                general_info:{
+                    descriptions:{
+                        location:"",
+                        dining:"",
+                        amenities:"",
+                    },
+                    spoken_languages:""
+                },
+                image:[]
+            }
+        },
     }
 })

@@ -65,15 +65,21 @@
         
         const url = `https://project-technical-test-api.up.railway.app/property/content?id=${inputDataFixed.value.id}&include=general_info&include=important_info&include=image`
         const responsePlaceInfoSummary = (await $fetch(url))[inputDataFixed.value.id]
+        console.log("responsePlaceInfoSummary = ",responsePlaceInfoSummary)
         infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
+        console.log("infoPlaceStore = ",infoPlaceStore.infoPlace)
+
+        infoLocationStore.reset()
         isLoadPlaceInfoAndImageShow.value = false
       }
       else{
-        isLoadLocationShow.value = true
+        isLoadPlaceInfoAndImageShow.value = true
         const url = `https://project-technical-test-api.up.railway.app/location?id=${inputDataFixed.value.id}&include=related_property`
         const response = (await $fetch(url))[inputDataFixed.value.id]
         infoLocationStore.setInfoLocation(response)
-        isLoadLocationShow.value = false
+
+        infoPlaceStore.reset()
+        isLoadPlaceInfoAndImageShow.value = false
       }
     }
     catch(err){
@@ -87,7 +93,6 @@
 
   await onMounted(async() => {
     try{
-
       const param_url_name = route.query.name
       const param_url_address = route.query.address
       const param_url_id = route.query.id
