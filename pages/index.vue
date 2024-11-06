@@ -5,13 +5,11 @@
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { useIndexHeaderStore } from '~/store/index/indexHeaderStore';
   import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
-import { usePlaceStore } from '~/store/PlaceStore';
 
   const route = useRoute()
   library.add(fas);
   const indexHeaderStore = useIndexHeaderStore()
   const infoPlaceStore = useInfoPlaceStore()
-  const placeStore = usePlaceStore()
 
   const url_params = ref({
     id:"9000248394", 
@@ -27,9 +25,10 @@ import { usePlaceStore } from '~/store/PlaceStore';
   const isLoadPlaceInfoAndImageShow = ref(false)
   const isFetchDataError = ref(false)
 
-  const isModalImageShow = ref(false)
-  const setIsModalImageShow = (data) => {
-    isModalImageShow.value = data
+
+  const isModalHeaderShow = ref(false)
+  const setIsModalHeaderShow = (data) => {
+    isModalHeaderShow.value = data
   }
 
   const activeMenu = ref('deals')
@@ -78,10 +77,10 @@ import { usePlaceStore } from '~/store/PlaceStore';
           infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
           isLoadPlaceInfoAndImageShow.value = false
           
-
-          const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${param_url_id}?checkin=${param_url_checkin}&checkout=${param_url_chekcout}&guest_per_room=${param_url_total_guest}&number_of_room=${param_url_total_room}`)
-          placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
-          isLoadDealsShow.value = false
+          // Will use it later for Deals Page
+          // const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${param_url_id}?checkin=${param_url_checkin}&checkout=${param_url_chekcout}&guest_per_room=${param_url_total_guest}&number_of_room=${param_url_total_room}`)
+          // placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
+          // isLoadDealsShow.value = false
         
       }
       else{
@@ -91,11 +90,10 @@ import { usePlaceStore } from '~/store/PlaceStore';
           infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
           isLoadPlaceInfoAndImageShow.value = false
           
-
-          const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${data.id}?checkin=${data.checkIn}&checkout=${data.checkOut}&guest_per_room=${data.totalGuest}&number_of_room=${data.totalRoom}`)
-          placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
-
-          isLoadDealsShow.value = false
+          // Will use it later for Deals Page
+          // const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${data.id}?checkin=${data.checkIn}&checkout=${data.checkOut}&guest_per_room=${data.totalGuest}&number_of_room=${data.totalRoom}`)
+          // placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
+          // isLoadDealsShow.value = false
       }
     }
     catch(err){
@@ -110,8 +108,8 @@ import { usePlaceStore } from '~/store/PlaceStore';
 
 <template>
     <IndexHeader 
-      :isModalImageShow="isModalImageShow"
-      :setIsModalImageShow="setIsModalImageShow"
+      :isModalHeaderShow="isModalHeaderShow",
+      :setIsModalHeaderShow="setIsModalHeaderShow"
       :url_params="url_params"
     />
     <div v-if="isFetchDataError" class="mt-16 h-svh">

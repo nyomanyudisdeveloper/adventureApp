@@ -28,11 +28,11 @@ PlaceSectionNav (Semi-final):
 - Responsive (Done)
 - Can navigate Section (Done)
 - Refactor Code (Done)
-- Animation change section nav (Done)
+- Animation change section nav 
 - Animation change section content
 - Pay Attention to Detail (Done)
 - Change state from global to local (Done)
-- small bug indicator nav is still show in Header DDL 
+- small bug indicator nav is still show in Header DDL  (Done, because translate)
 
 PlaceInfoSection (Done):
 - Responsive (Done)
