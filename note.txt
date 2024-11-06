@@ -19,6 +19,8 @@ Header =
 PlaceInfoSummary:
 - Responsive (Done)
 - Refactor Code (Done)
+- Skeleton Loader (Done)
+- Change circle rating 
 - Pay attention to detail 
 
 PlaceSectionNav:
@@ -33,7 +35,7 @@ PlaceInfoSection:
 - Responsive (Done)
 - Embed Data (Done)
 - Refactor Code (Done)
-- Pay attention to detail 
+- Pay attention to detail (Done) 
 
 PlaceImageGallery:
 - Responsive (Done)

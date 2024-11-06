@@ -27,13 +27,19 @@ import { usePlaceStore } from '~/store/PlaceStore';
     totalRoom:1
   })
 
+  const isLoadDealsShow = ref(false)
+  const isLoadPlaceInfoAndImage = ref(false)
+  
+
   await onMounted(async() => {
+    isLoadDealsShow.value = true
+    isLoadPlaceInfoAndImage.value = true
     var data = {
       id:"9000248394", 
       name:"Fairmont Jakarta",
       address:"Jakarta, Indonesia",
-      checkIn:"2024-11-05",
-      checkOut:"2024-11-06",
+      checkIn:"2024-11-12",
+      checkOut:"2024-11-15",
       totalGuest:3,
       totalRoom:1
     }
@@ -61,14 +67,18 @@ import { usePlaceStore } from '~/store/PlaceStore';
         const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${param_url_id}&include=general_info&include=important_info&include=image`))[param_url_id]
         infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
         indexGalleryStore.setListImage(responsePlaceInfoSummary.image)
+        isLoadPlaceInfoAndImage.value = false
 
         const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${param_url_id}?checkin=${param_url_checkin}&checkout=${param_url_chekcout}&guest_per_room=${param_url_total_guest}&number_of_room=${param_url_total_room}`)
         placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
+        // isLoadDealsShow.value = false
       }
       catch(err){
         // console.log("Index err onMount = ",err)
         // const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${data.id}&include=general_info&include=important_info&include=image`))[data.id]
         // infoPlaceStore.setInfoSummary(responsePlaceInfoSummary)
+        // isLoadDealsShow.value = false
+        isLoadPlaceInfoAndImage.value = false
       }
     }
     else{
@@ -76,10 +86,15 @@ import { usePlaceStore } from '~/store/PlaceStore';
       const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${data.id}&include=general_info&include=important_info&include=image`))[data.id]
       infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
       indexGalleryStore.setListImage(responsePlaceInfoSummary.image)
+      isLoadPlaceInfoAndImage.value = false
 
+      const url = `https://project-technical-test-api.up.railway.app/stay/availability/${data.id}?checkin=${data.checkIn}&checkout=${data.checkOut}&guest_per_room=${data.totalGuest}&number_of_room=${data.totalRoom}`
+      console.log("url = ",url)
       const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${data.id}?checkin=${data.checkIn}&checkout=${data.checkOut}&guest_per_room=${data.totalGuest}&number_of_room=${data.totalRoom}`)
       console.log("responsePlaceAvailability.offer_list = ",responsePlaceAvailability.offer_list)
       placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
+
+      // isLoadDealsShow.value = false
     }
   })
 
@@ -88,11 +103,11 @@ import { usePlaceStore } from '~/store/PlaceStore';
 
 <template>
     <IndexHeader :url_params="url_params"/>
-    <IndexPlaceInfoSummary v-if="infoPlaceStore.infoPlace" />
-    <IndexPlaceSectionNav v-if="infoPlaceStore.infoPlace"/>
-    <IndexPlaceGeneralInfo v-if="indexNavStore.activeMenu == 'info' && infoPlaceStore.infoPlace" />
+    <IndexPlaceInfoSummary :isLoadPlaceInfoAndImage="isLoadPlaceInfoAndImage"  />
+    <IndexPlaceSectionNav :isLoadPlaceInfoAndImage="isLoadPlaceInfoAndImage" v-if="infoPlaceStore.infoPlace"/>
+    <IndexPlaceGeneralInfo v-if="indexNavStore.activeMenu == 'info'" />
     <IndexPlaceGalleryPhotos v-if="indexNavStore.activeMenu == 'photos' && infoPlaceStore.infoPlace" />
-    <IndexPlaceDeals v-if="indexNavStore.activeMenu == 'deals' && infoPlaceStore.infoPlace" />
+    <IndexPlaceDeals :isLoadDealsShow="isLoadDealsShow"  v-if="indexNavStore.activeMenu == 'deals'" />
     <!-- <PlaceDeals v-if="placeStore.getPlaceSectionNavActive == 'deals'" />
     <PlaceGalleryPhotos v-if="placeStore.getPlaceSectionNavActive == 'photos'" /> -->
     <CommonFooter/>

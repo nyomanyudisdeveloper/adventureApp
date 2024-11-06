@@ -3,7 +3,38 @@ import { defineStore } from "pinia"
 export const useInfoPlaceStore = defineStore("InfoStore",{
     state: () => {
         return {
-            info_place:undefined
+            info_place:{
+                name:"",
+                catalog:{
+                    star_rating:0,
+                    hero_image_url:{
+                        ori:""
+                    }
+                },
+                important_info:{
+                    checkin:{
+                        begin_time:"",
+                        instructions:""
+                    },
+                    checkout:{
+                        time:""
+                    },
+                    policies:{
+                        know_before_you_go:""
+                    },
+                    fees:{
+                        optional:""
+                    }
+                },
+                general_info:{
+                    descriptions:{
+                        location:"",
+                        dining:"",
+                        amenities:"",
+                    },
+                    spoken_languages:""
+                }
+            }
         }
     },
     getters: {
@@ -54,6 +85,7 @@ export const useInfoPlaceStore = defineStore("InfoStore",{
             return state.info_place.image
         },
         infoPlaceName: (state) => {return state.info_place.name},
+        starRating:(state)=>{ return state.info_place.catalog.star_rating },
         infoPlaceRatingStarInList: (state) => {
             var listRatingStar = []
             const star_rating = state.info_place.catalog.star_rating
