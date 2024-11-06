@@ -807,6 +807,10 @@ video {
   height: 100svh;
 }
 
+.h-1\/2 {
+  height: 50%;
+}
+
 .max-h-69vh {
   max-height: 69vh;
 }

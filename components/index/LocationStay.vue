@@ -3,5 +3,7 @@
 </script>
 
 <template>
-    <CommonMaintanance />
+    <div class="h-96">
+        <CommonMaintanance />
+    </div>
 </template>

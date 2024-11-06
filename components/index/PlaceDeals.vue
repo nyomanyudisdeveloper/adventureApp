@@ -8,7 +8,9 @@
 </script>
 
 <template>
-    <CommonMaintanance />
+    <div class="h-96">
+        <CommonMaintanance />
+    </div>
     <!-- <div v-if="placeStore.listAvailibility.length > 0 && !isLoadDealsShow" >
         <div class="p-5 bg-white">
             <div class="flex  items-center">
