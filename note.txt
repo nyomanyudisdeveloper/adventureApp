@@ -8,7 +8,9 @@ General :
 
 Header = 
 - input place text , text "Where are you going ?" belum warna biru ketika focused 
-- refactor code (done)
+- refactor code UI (done)
+- change global state to local in Input Place (done)
+- bugfix fetch data autocomplete input place (done)
 - input place autocomplete (done)
 - input date checkin checkout (done)
 - input total room and guest (done)
@@ -61,5 +63,25 @@ Footer:
 
 Need to learn again: 
 - Gallery Image, saat open modal dia bisa langsung ke image tujuan
+
+const param_url_name = route.query.name
+const param_url_address = route.query.address
+const param_url_id = route.query.id
+const param_url_checkin = route.query.checkin
+const param_url_chekcout = route.query.checkout
+const param_url_total_guest = route.query.total_guest
+const param_url_total_room = route.query.total_room
+const url_params = ref({
+    id:"9000248394", 
+    name:"Fairmont Jakarta",
+    address:"Jakarta, Indonesia",
+    checkIn:"2024-11-05",
+    checkOut:"2024-11-06",
+    totalGuest:3,
+    totalRoom:1
+  })
+
+
+http://localhost:3000/?name=Fairmont Jakarta&address=Jakarta, Indonesia&id=9000248394&checkin=2024-11-05&checkout=2024-11-06&total_guest=2&total_room=1
 
 
