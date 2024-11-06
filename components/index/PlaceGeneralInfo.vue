@@ -13,8 +13,8 @@ defineProps({
 </script>
 
 <template>
-    <div v-if="isLoadPlaceInfoAndImageShow" class="p-3 animate-pulse">
-        <div v-for="i in 5" class="mb-5">
+    <div v-if="isLoadPlaceInfoAndImageShow" class="flex flex-col justify-center items-center">
+        <div  v-for="i in 5"  class="w-full py-5 px-4 animate-pulse lg:max-w-5xl ">
             <div class="h-3 w-1/2 bg-gray-300 mb-3 rounded"></div>
             <div class="h-2 w-full bg-gray-300 mb-2 rounded"></div>
             <div class="h-2 w-full bg-gray-300 mb-2 rounded"></div>

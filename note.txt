@@ -2,9 +2,9 @@ npx tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch
 
 Task To Do List: 
 
+General : 
+- Add Error Page when fetch Data failed  (Done)
 - Inisialisasi Data ketika Home Page (Done)
-
-
 
 Header = 
 - input place text , text "Where are you going ?" belum warna biru ketika focused 
@@ -34,19 +34,22 @@ PlaceSectionNav (Semi-final):
 - Change state from global to local (Done)
 - small bug indicator nav is still show in Header DDL 
 
-PlaceInfoSection:
+PlaceInfoSection (Done):
 - Responsive (Done)
 - Embed Data (Done)
 - Refactor Code (Done)
+- Add Loading Page (Done)
 - Pay attention to detail (Done) 
 
-PlaceImageGallery:
+PlaceImageGallery (Semi Done):
 - Responsive (Done)
 - Embed Data (Done)
 - Modal after click image (Done)
+- Add Loading Page (Done)
+- Convert from global state to local state (Done)
 - animation after click cursor left and right 
 - in modal, no image is not show 
-- pay attention to detail
+- pay attention to detail (Done)
 
 Place Deals:
 
@@ -55,5 +58,8 @@ Footer:
 - Check condition when data is empty so footer still on bottom 
 - pay attention to detail 
 
+
+Need to learn again: 
+- Gallery Image, saat open modal dia bisa langsung ke image tujuan
 
 

@@ -5,14 +5,12 @@
   import { fas } from '@fortawesome/free-solid-svg-icons';
   import { useIndexHeaderStore } from '~/store/index/indexHeaderStore';
   import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
-  import { useIndexGalleryStore } from '~/store/index/indexGalleryStore';
 import { usePlaceStore } from '~/store/PlaceStore';
 
   const route = useRoute()
   library.add(fas);
   const indexHeaderStore = useIndexHeaderStore()
   const infoPlaceStore = useInfoPlaceStore()
-  const indexGalleryStore = useIndexGalleryStore()
   const placeStore = usePlaceStore()
 
   const url_params = ref({
@@ -28,6 +26,11 @@ import { usePlaceStore } from '~/store/PlaceStore';
   const isLoadDealsShow = ref(false)
   const isLoadPlaceInfoAndImageShow = ref(false)
   const isFetchDataError = ref(false)
+
+  const isModalImageShow = ref(false)
+  const setIsModalImageShow = (data) => {
+    isModalImageShow.value = data
+  }
 
   const activeMenu = ref('deals')
   function setActiveMenu (data)  {
@@ -71,9 +74,8 @@ import { usePlaceStore } from '~/store/PlaceStore';
           indexHeaderStore.setUrlParamData(data)
 
           
-          const responsePlaceInfoSummary = (await $fetch(`https://pro222ject-technical-test-api.up.railway.app/property/content?id=${param_url_id}&include=general_info&include=important_info&include=image`))[param_url_id]
+          const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${param_url_id}&include=general_info&include=important_info&include=image`))[param_url_id]
           infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
-          indexGalleryStore.setListImage(responsePlaceInfoSummary.image)
           isLoadPlaceInfoAndImageShow.value = false
           
 
@@ -85,20 +87,19 @@ import { usePlaceStore } from '~/store/PlaceStore';
       else{
           indexHeaderStore.setUrlParamData(data)
 
-          const responsePlaceInfoSummary = (await $fetch(`https://pro222ject-technical-test-api.up.railway.app/property/content?id=${data.id}&include=general_info&include=important_info&include=image`))[data.id]
+          const responsePlaceInfoSummary = (await $fetch(`https://project-technical-test-api.up.railway.app/property/content?id=${data.id}&include=general_info&include=important_info&include=image`))[data.id]
           infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
-          indexGalleryStore.setListImage(responsePlaceInfoSummary.image)
           isLoadPlaceInfoAndImageShow.value = false
           
 
           const responsePlaceAvailability = await $fetch(`https://project-technical-test-api.up.railway.app/stay/availability/${data.id}?checkin=${data.checkIn}&checkout=${data.checkOut}&guest_per_room=${data.totalGuest}&number_of_room=${data.totalRoom}`)
-          console.log("responsePlaceAvailability.offer_list = ",responsePlaceAvailability.offer_list)
           placeStore.setListAvailibility(responsePlaceAvailability.offer_list)
 
           isLoadDealsShow.value = false
       }
     }
     catch(err){
+      console.log("error = ",err)
       isFetchDataError.value = true
       isLoadPlaceInfoAndImageShow.value = false
     }
@@ -108,7 +109,11 @@ import { usePlaceStore } from '~/store/PlaceStore';
 </script>
 
 <template>
-    <IndexHeader :url_params="url_params"/>
+    <IndexHeader 
+      :isModalImageShow="isModalImageShow"
+      :setIsModalImageShow="setIsModalImageShow"
+      :url_params="url_params"
+    />
     <div v-if="isFetchDataError" class="mt-16 h-svh">
       <CommonLoadError />
     </div>
@@ -121,7 +126,12 @@ import { usePlaceStore } from '~/store/PlaceStore';
         :isLoadPlaceInfoAndImageShow="isLoadPlaceInfoAndImageShow" 
         v-if="activeMenu == 'info'" 
       />
-      <IndexPlaceGalleryPhotos v-if="activeMenu == 'photos' && infoPlaceStore.infoPlace" />
+      <IndexPlaceGalleryPhotos 
+        :isLoadPlaceInfoAndImageShow="isLoadPlaceInfoAndImageShow"
+        :isModalImageShow="isModalImageShow"
+        :setIsModalImageShow="setIsModalImageShow"
+        v-if="activeMenu == 'photos' && infoPlaceStore.infoPlace" 
+      />
       <IndexPlaceDeals :isLoadDealsShow="isLoadDealsShow"  v-if="activeMenu == 'deals'" />
     </div>
     <CommonFooter/>

@@ -17,10 +17,11 @@ defineProps({
         <div class="flex flex-row mt-3">
             <div class="w-20 h-20  sm:h-32 sm:w-32 mr-3 flex bg-gray-300 rounded-full  justify-center items-center"></div>
             <div class="w-9/12">
-                <div class="hidden sm:flex items-center bg-gray-300 h-3 mb-3 rounded"></div>
-                <p class="text-sm sm:text-base text-slate-600 capitalize sm:mt-1 h-3 bg-gray-300 mb-3 rounded"></p>
-                <p class="text-sm sm:text-base sm:mt-1  font-light h-5 bg-gray-300 rounded"></p>
-                <div class="flex flex-row items-center mt-2 bg-gray-300 rounded h-5"> </div>
+                <div class=" items-center bg-gray-300 h-5 mb-3 rounded "></div>
+                <div class="items-center bg-gray-300 h-3 mb-2 rounded "></div>
+                <div class="items-center bg-gray-300 h-3 mb-2 rounded "></div>
+                <div class="items-center bg-gray-300 h-3 mb-2 rounded "></div>
+                <div class="items-center bg-gray-300 h-3 mb-2 rounded "></div>
             </div>
         </div>
     </div>

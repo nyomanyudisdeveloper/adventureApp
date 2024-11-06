@@ -33,7 +33,8 @@ export const useInfoPlaceStore = defineStore("InfoStore",{
                         amenities:"",
                     },
                     spoken_languages:""
-                }
+                },
+                image:[]
             }
         }
     },
@@ -45,6 +46,9 @@ export const useInfoPlaceStore = defineStore("InfoStore",{
             listInfo.push(state.info_place.general_info.descriptions.dining)
             listInfo.push(state.info_place.general_info.descriptions.amenities)
             return listInfo
+        },
+        listGalleryImage:(state) => {
+            return state.info_place.image
         },
         languagesDesc:(state) => {
             const spoken_languages = state.info_place.general_info.spoken_languages

@@ -3,24 +3,29 @@ import { usePlaceStore } from '~/store/PlaceStore';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { useIndexHeaderStore } from '~/store/index/indexHeaderStore';
 import { useInfoPlaceStore } from '~/store/index/infoPlaceStore';
-import { useIndexGalleryStore } from '~/store/index/indexGalleryStore';
 
 
 const placeStore = usePlaceStore()
-const infoPlaceStore = useInfoPlaceStore()
 const indexHeaderStore = useIndexHeaderStore()
-const indexGalleryStore = useIndexGalleryStore()
+const infoPlaceStore = useInfoPlaceStore()
 
 const isModalShow = ref(false)
 
+const {isModalImageShow,setIsModalImageShow} = defineProps({
+    isModalImageShow:{type: Object, required:true},
+    setIsModalImageShow:{type: Object, required:true}
+})
+
 function goToPrev(){
-    if(indexGalleryStore.isModalImageShow){
-        indexGalleryStore.setIsModalImageShowAndIndex(0)
+    if(isModalImageShow){
+        setIsModalImageShow(false)
     }
     else{
         window.history.back()
     }
 }
+
+
 
 
 function searchNavClicked(){
