@@ -1,5 +1,6 @@
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useInfoLocationStore } from '~/store/index/infoLocationStore';
 const {activeMenu,setActiveMenu} = defineProps({
     setActiveMenu:{
         type:Object,
@@ -10,15 +11,16 @@ const {activeMenu,setActiveMenu} = defineProps({
         require:true
     }
 })
+const infoLocationStore = useInfoLocationStore()
 
 function clickSectionNav(data) {
     setActiveMenu(data)
-
 }
+
 </script>
 
 <template>
-    <div class="sm:hidden">
+    <div v-if="infoLocationStore.name == ''" class="sm:hidden">
         <div class="flex flex-row  mt-7">
             <div @click="clickSectionNav('deals')" class="flex justify-center items-center w-4/12 pb-3 cursor-pointer" >
                 <FontAwesomeIcon class="w-6 h-6" :icon="['fas', 'tag']" :style="{color:activeMenu == 'deals'?'#1a73e8':''}" />
@@ -48,7 +50,15 @@ function clickSectionNav(data) {
             }"></div>
         </div>
     </div>
-    <div class="hidden sm:flex flex-col mt-7">
+    <div v-else class="sm:hidden">
+        <div class="flex flex-row justify-center mt-7">
+            <div class="flex justify-center items-center w-4/12 pb-3 cursor-pointer" >
+                <FontAwesomeIcon class="w-6 h-6 text-blue-600" :icon="['fas', 'bed']" />
+            </div>
+        </div>
+        <div class="flex flex-row w-full h-0.5 bg-blue-600"></div>
+    </div>
+    <div v-if="infoLocationStore.name == ''" class="hidden sm:flex flex-col mt-7">
         <div class="w-full h-0.5 bg-slate-200 flex justify-center items-center max-w-5xl mx-auto">
             <div class="flex flex-row justify-center  w-5/12 max-w-2xl bg-slate-200  ">
                 <div class="h-0.5 w-32   "
@@ -81,6 +91,21 @@ function clickSectionNav(data) {
                 <div @click="clickSectionNav('info')" class=" py-5 flex justify-center items-center w-32 cursor-pointer ">
                     <FontAwesomeIcon class="w-4 h-4" :icon="['fas', 'circle-info']" :style="{color:activeMenu == 'info'?'#1a73e8':''}" />
                     <span class="ml-2 text-xs " :class="{'text-blue-400':activeMenu == 'info'? true: false}">INFO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-else class="hidden sm:flex flex-col mt-7">
+        <div class="w-full h-0.5 bg-slate-200 flex justify-center items-center max-w-5xl mx-auto">
+            <div class="flex flex-row justify-center items-start max-w-2xl bg-slate-200  ">
+                <div class="h-0.5 w-32  bg-blue-600 "></div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center max-w-5xl mx-auto  w-full">
+            <div class="flex flex-row justify-center  w-5/12 max-w-2xl  ">
+                <div class="py-5 flex justify-center items-center  w-32 cursor-pointer  ">
+                    <FontAwesomeIcon class="w-4 h-4 text-blue-600" :icon="['fas', 'bed']"  />
+                    <span class="ml-2 text-xs text-blue-600" >STAY</span>
                 </div>
             </div>
         </div>

@@ -60,6 +60,7 @@
     isNoFetchDataFirstTime.value = false
     try{
       if(inputDataFixed.value.locationType == 'property'){
+        infoLocationStore.reset()
         isLoadDealsShow.value = true
         isLoadPlaceInfoAndImageShow.value = true
         
@@ -69,16 +70,17 @@
         infoPlaceStore.setInfoPlace(responsePlaceInfoSummary)
         console.log("infoPlaceStore = ",infoPlaceStore.infoPlace)
 
-        infoLocationStore.reset()
+        
         isLoadPlaceInfoAndImageShow.value = false
       }
       else{
+        infoPlaceStore.reset()
         isLoadPlaceInfoAndImageShow.value = true
         const url = `https://project-technical-test-api.up.railway.app/location?id=${inputDataFixed.value.id}&include=related_property`
         const response = (await $fetch(url))[inputDataFixed.value.id]
         infoLocationStore.setInfoLocation(response)
 
-        infoPlaceStore.reset()
+        
         isLoadPlaceInfoAndImageShow.value = false
       }
     }
@@ -165,15 +167,16 @@
         <IndexPlaceSectionNav :setActiveMenu="setActiveMenu" :activeMenu="activeMenu" />
         <IndexPlaceGeneralInfo 
           :isLoadPlaceInfoAndImageShow="isLoadPlaceInfoAndImageShow" 
-          v-if="activeMenu == 'info'" 
+          v-if="activeMenu == 'info' && infoLocationStore.name == ''" 
         />
         <IndexPlaceGalleryPhotos 
           :isLoadPlaceInfoAndImageShow="isLoadPlaceInfoAndImageShow"
           :isModalImageShow="isModalImageShow"
           :setIsModalImageShow="setIsModalImageShow"
-          v-if="activeMenu == 'photos' && infoPlaceStore.infoPlace" 
+          v-if="activeMenu == 'photos' && infoLocationStore.name == ''" 
         />
-        <IndexPlaceDeals :isLoadDealsShow="isLoadDealsShow"  v-if="activeMenu == 'deals'" />
+        <IndexPlaceDeals v-if="infoLocationStore.name == '' && activeMenu == 'deals'"  :isLoadDealsShow="isLoadDealsShow"/>
+        <IndexLocationStay v-if="infoLocationStore.name != ''" />
       </div>
     </div>
     <CommonFooter/>
